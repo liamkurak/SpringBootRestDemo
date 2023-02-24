@@ -33,7 +33,7 @@ public class SampleController {
     public List<Sample> getByAge(@PathVariable int age) {
         // GET - http://localhost:8080/samples/age/40
         // GET - http://localhost:8080/samples/age/40
-//        return null;
+        // return null;
         return sampleService.getAll();
     }
 

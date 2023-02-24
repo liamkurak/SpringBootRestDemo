@@ -11,6 +11,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -34,9 +39,26 @@ public class SecurityConfig {
     @Autowired
     private UserDetailsService userDetailsServiceImpl;
 
+    //***
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() { // 解决跨域问题
+        CorsConfiguration configuration = new CorsConfiguration();
+        //**
+      configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:3000"));
+        configuration.addAllowedOriginPattern("");
+        //configuration.addAllowedOrigin(""); // You should only set trusted site here. e.g. http://localhost:4200/ means only this site can access.
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"));
+        configuration.addAllowedHeader("*");
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+//        http.csrf().disable();
+        http.csrf().disable().cors();
 
         http.authorizeRequests((requests) ->
                         requests
