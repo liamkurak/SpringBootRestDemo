@@ -43,9 +43,8 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() { // 解决跨域问题
         CorsConfiguration configuration = new CorsConfiguration();
-        //**
-      configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:3000"));
-        configuration.addAllowedOriginPattern("");
+        configuration.setAllowedOrigins(Arrays.asList("http://127.0.0.1:3000"));
+        configuration.addAllowedOriginPattern("*");
         //configuration.addAllowedOrigin(""); // You should only set trusted site here. e.g. http://localhost:4200/ means only this site can access.
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"));
         configuration.addAllowedHeader("*");
