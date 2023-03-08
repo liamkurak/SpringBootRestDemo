@@ -1,8 +1,8 @@
 package com.mercury.SpringBootRestDemo.service;
 
+import com.mercury.SpringBootRestDemo.bean.Comment;
 import com.mercury.SpringBootRestDemo.bean.Sample;
-import com.mercury.SpringBootRestDemo.dao.SampleDao;
-import com.mercury.SpringBootRestDemo.dao.TestDao;
+import com.mercury.SpringBootRestDemo.dao.CommentDao;
 import com.mercury.SpringBootRestDemo.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,52 +10,53 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SampleService {
+public class CommentService {
 
     @Autowired
-    private TestDao testDao;
+    private CommentDao commentDao;
 
-    @Autowired
-    private TestDao testDao2;
 
-    @Autowired  // by type
-    private SampleDao sampleDao;
-
-    public Response save(Sample sample){
+    public Response insertTestToComment(){
         try{
-            sampleDao.save(sample);
-//            sampleDao.save(new Sample("liam",12));
-            sampleDao.insertTestToSample();
-            System.out.println("sampleService.save -> sampleDao.save -> return succ/fals");
-
-            return new Response(true,"SampleService -> success to save" + sample);
+            commentDao.insertTestToComment();
+            System.out.println("commentService.save -> commentDao.insertTestToComment()");
+            return new Response(true,"CommentService -> success to save"  );
         }catch (Exception e) {
-            return new Response(false,"SampleService -> failed to save" + sample.toString());
+            return new Response(false,"CommentService -> failed to save"  );
         }
     }
-    public Response sampleServiceDelete(Sample sample){
+
+    public Response save(Comment comment){
         try{
-            sampleDao.delete(sample);
+            commentDao.save(comment);
+
+//            VALUES ('1', 'name', 'review', '4', '01-01-2000')
+            commentDao.insertTestToComment();
+
+            System.out.println("commentService.save -> commentDao.save: returns"+ comment);
+
+            return new Response(true,"CommentService -> save(): success to save" + comment);
+        }catch (Exception e) {
+            return new Response(false,"CommentService -> save(): failed to save" + comment.toString());
+        }
+    }
+    public Response commentServiceDelete(Comment comment){
+        try{
+            commentDao.delete(comment);
 //            sampleDao.save(new Sample("liam",12));
-            sampleDao.insertTestToSample();
+            commentDao.insertTestToComment();
             System.out.println("sampleService.delete -> sampleDao.save -> return succ/fals");
 
-            return new Response(true,"SampleService -> success to save" + sample);
+            return new Response(true,"SampleService -> success to save" + comment);
         }catch (Exception e) {
-            return new Response(false,"SampleService -> failed to save" + sample.toString());
+            return new Response(false,"SampleService -> failed to save" + comment.toString());
         }
     }
 
-    public List<Sample> testGetAll() {
-        System.out.println(testDao);
-        System.out.println(testDao2);
-
-        return null;
-    }
-
-    public List<Sample> getAll() {
+    public List<Comment> getAll() {
 //        sampleDao.save(new Sample("newName",1));
 
-        return sampleDao.findAll();
+        return commentDao.findAll();
     }
+
 }

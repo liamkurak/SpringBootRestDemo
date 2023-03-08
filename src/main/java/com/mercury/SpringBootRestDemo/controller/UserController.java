@@ -2,6 +2,7 @@ package com.mercury.SpringBootRestDemo.controller;
 
 import java.util.List;
 
+import com.mercury.SpringBootRestDemo.bean.Sample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -32,14 +33,16 @@ public class UserController {
 	}
 	
 	@PreAuthorize("permitAll()")
-	@PostMapping
+	@PostMapping("/postUser")
 	public Response addUser(@RequestBody User user) {
 		return userService.register(user);
 	}
-	
-	@PutMapping
+
+	//localhost:8080/users/putUser
 	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+	@PutMapping("/putUser")
 	public Response changeUser(@RequestBody User user, Authentication authentication) {
+		//TODO: body
 		return userService.changePassword(user, authentication);
 	}
 	
@@ -48,4 +51,17 @@ public class UserController {
 	public Response deleteUser(@PathVariable int id) {
 		return userService.deleteUser(id);
 	}
+
+
+	@PutMapping
+	public void addNewUser_userService(@RequestBody User user) {
+		// POST - http://localhost:8080/users
+		userService.insertUserService(user);
+	}
+
+	@GetMapping("/getAll")
+	public List<User> getAllData() {
+		return userService.getAllData();
+	}
+
 }

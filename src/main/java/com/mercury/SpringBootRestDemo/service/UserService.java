@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.mercury.SpringBootRestDemo.bean.Sample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,7 +28,10 @@ public class UserService {
 	public List<User> getAll() {
 		return userDao.findAll();
 	}
-	
+	public List<User> getAllData() {
+		return userDao.findAll();
+	}
+
 	public Response register(User user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		
@@ -71,4 +75,19 @@ public class UserService {
 			return new Response(false, "User is not found!");
 		}
 	}
+
+
+	public Response insertUserService(User user){
+		try{
+			userDao.save(user);
+//            sampleDao.save(new Sample("liam",12));
+			userDao.insertTestToSample();
+			System.out.println("userService.save -> userDao.save -> return succ/fals");
+
+			return new Response(true,"userService -> success to save" + user);
+		}catch (Exception e) {
+			return new Response(false,"userService -> failed to save" + user.toString());
+		}
+	}
+
 }

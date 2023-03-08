@@ -40,12 +40,19 @@ public class SampleController {
     @PostMapping
     public void save(@RequestBody Sample sample) {
         // POST - http://localhost:8080/samples
+        sampleService.save(sample);
+    }
+
+    @PostMapping("/{x}")
+    public void insertToSampleTable(@RequestBody Sample sample) {
+        // POST - http://localhost:8080/samples
+        sampleService.save(sample);
     }
 
     @DeleteMapping("/{name}")
     public void delete(@PathVariable String name) {
         // DELETE - http://localhost:8080/samples/Bill
+        sampleService.sampleServiceDelete(new Sample(name,1));
     }
-
 
 }

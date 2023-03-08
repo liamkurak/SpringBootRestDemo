@@ -1,7 +1,8 @@
 package com.mercury.SpringBootRestDemo.controller;
 
-import com.mercury.SpringBootRestDemo.bean.Sample;
-import com.mercury.SpringBootRestDemo.service.SampleService;
+import com.mercury.SpringBootRestDemo.bean.Comment;
+import com.mercury.SpringBootRestDemo.dao.CommentDao;
+import com.mercury.SpringBootRestDemo.service.CommentService;
 import com.mercury.SpringBootRestDemo.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,50 +10,60 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/samples")
-public class SampleController {
+@RequestMapping("/comments")
+public class CommentController {
     @Autowired
-    private SampleService sampleService;
+    private CommentService commentService;
 
     @Autowired
     private TestService ts;
 
     @GetMapping
-    public List<Sample> getAll() {
-        // GET - http://localhost:8080/samples
+    public List<Comment> getAll() {
+        // GET - http://localhost:8080/comments
+        commentService.insertTestToComment();
+//        return ()();
+        System.out.println("CommentController -> getAll()");
         return null;
+//        return commentService.getAll();
     }
 
     @GetMapping("/{name}")
-    public Sample get(@PathVariable String name) {
-        // GET - http://localhost:8080/samples/Dave
+    public Comment get(@PathVariable String name) {
+        // GET - http://localhost:8080/comments/Dave
         return null;
     }
 
     @GetMapping("/age/{age}")
-    public List<Sample> getByAge(@PathVariable int age) {
-        // GET - http://localhost:8080/samples/age/40
-        // GET - http://localhost:8080/samples/age/40
+    public List<Comment> getByAge(@PathVariable int age) {
+        // GET - http://localhost:8080/comments/age/40
+        // GET - http://localhost:8080/comments/age/40
         // return null;
-        return sampleService.getAll();
+        return commentService.getAll();
     }
 
     @PostMapping
-    public void save(@RequestBody Sample sample) {
-        // POST - http://localhost:8080/samples
-        sampleService.save(sample);
+    public void save(@RequestBody Comment comment) {
+        // POST - http://localhost:8080/comments
+        commentService.save(comment);
+    }
+    @PutMapping
+    public void insertCommentController(@RequestBody Comment comment) {
+        // PUT - http://localhost:8080/comments
+        commentService.save(comment);
+        System.out.println("PUT -> comment: "+ comment.getStars());
     }
 
     @PostMapping("/{x}")
-    public void insertToSampleTable(@RequestBody Sample sample) {
-        // POST - http://localhost:8080/samples
-        sampleService.save(sample);
+    public void insertToSampleTable(@RequestBody Comment comment) {
+        // POST - http://localhost:8080/comments
+        commentService.save(comment);
     }
 
-    @DeleteMapping("/{name}")
-    public void delete(@PathVariable String name) {
-        // DELETE - http://localhost:8080/samples/Bill
-        sampleService.sampleServiceDelete(new Sample(name,1));
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable int id) {
+        // DELETE - http://localhost:8080/comments/1
+        commentService.commentServiceDelete(new Comment(id));
     }
 
 }

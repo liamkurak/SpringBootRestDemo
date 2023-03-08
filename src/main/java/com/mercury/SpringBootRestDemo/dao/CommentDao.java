@@ -1,27 +1,23 @@
 package com.mercury.SpringBootRestDemo.dao;
 
-import com.mercury.SpringBootRestDemo.bean.Sample;
+import com.mercury.SpringBootRestDemo.bean.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface SampleDao extends JpaRepository<Sample, String> {
-
-    //    @Query("select '*' From Sample")
-//    @Query("select Sample")
-//    public default Sample allFromSample(){
-//        return new Sample();
-//    }
-
+public interface CommentDao extends JpaRepository<Comment, String> {
 //    @Query(
-//            value = "SELECT MAX(idavailability) FROM lv2_availability",
-//            nativeQuery = true)
-//    int maxIdAvailability();
-
-//    @Query(
-//            value = "INSERT INTO \"LIAMZ\".\"SAMPLE\" (NAME, AGE) VALUES ('DaoQuery', '11')",
-//    nativeQuery= true)
-//    public default Sample insertTestToSample(){
-//        return new Sample();
+//            value = "INSERT INTO \"LIAMZ\".\"COMMENT_TABLE\" (ID, NAME, REVIEW, STARS, REVIEWDATE) VALUES ('222222', 'namenamename', 'review', '4', '01-01-2000')",
+//            nativeQuery= true)
+//    public default Comment insertTestToComment1(){
+//        return new Comment();
 //    }
+    @Query(
+            value =
+                    "insert into comment_table " +
+                            "(name, review, reviewdate, stars, id) " +
+                            "values " +
+                            "('name', 'review','reviewdate', 2222, 444)",
+            nativeQuery= true)
+     void insertTestToComment();
 
 }
