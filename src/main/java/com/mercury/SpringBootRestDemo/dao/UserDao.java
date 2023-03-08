@@ -8,12 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 public interface UserDao extends JpaRepository<User, Integer> {
     User findByUsername(String username);
 
-    @Query(
-            value = "INSERT INTO \"LIAMZ\".\"MSI_USER\" (USERNAME, PASSWORD) VALUES ('DaoQuery', 'DaoPassword')",
-            nativeQuery= true)
-    public default User insertTestToSample(){
-        return new User();
-    }
+//    @Query(
+//            value = "INSERT INTO \"LIAMZ\".\"MSI_USER\" (USERNAME, PASSWORD) VALUES ('DaoQuery', 'DaoPassword')",
+//            nativeQuery= true)
+//    public default User insertTestToSample(){
+//        return new User();
+//    }
 
 
 

@@ -81,7 +81,7 @@ public class UserService {
 		try{
 			userDao.save(user);
 //            sampleDao.save(new Sample("liam",12));
-			userDao.insertTestToSample();
+//			userDao.insertTestToSample();
 			System.out.println("userService.save -> userDao.save -> return succ/fals");
 
 			return new Response(true,"userService -> success to save" + user);
