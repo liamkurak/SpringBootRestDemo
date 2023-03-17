@@ -20,7 +20,7 @@ public class SampleController {
     @GetMapping
     public List<Sample> getAll() {
         // GET - http://localhost:8080/samples
-        return null;
+        return sampleService.getAll();
     }
 
     @GetMapping("/{name}")

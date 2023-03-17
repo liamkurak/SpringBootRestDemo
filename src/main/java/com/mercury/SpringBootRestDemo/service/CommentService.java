@@ -31,7 +31,7 @@ public class CommentService {
             commentDao.save(comment);
 
 //            VALUES ('1', 'name', 'review', '4', '01-01-2000')
-            commentDao.insertTestToComment();
+//            commentDao.insertTestToComment();
 
             System.out.println("commentService.save -> commentDao.save: returns"+ comment);
 
@@ -44,9 +44,8 @@ public class CommentService {
         try{
             commentDao.delete(comment);
 //            sampleDao.save(new Sample("liam",12));
-            commentDao.insertTestToComment();
+//            commentDao.insertTestToComment();
             System.out.println("sampleService.delete -> sampleDao.save -> return succ/fals");
-
             return new Response(true,"SampleService -> success to save" + comment);
         }catch (Exception e) {
             return new Response(false,"SampleService -> failed to save" + comment.toString());
@@ -55,7 +54,6 @@ public class CommentService {
 
     public List<Comment> getAll() {
 //        sampleDao.save(new Sample("newName",1));
-
         return commentDao.findAll();
     }
 

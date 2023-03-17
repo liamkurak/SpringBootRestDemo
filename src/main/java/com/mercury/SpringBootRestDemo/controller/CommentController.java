@@ -1,7 +1,6 @@
 package com.mercury.SpringBootRestDemo.controller;
 
 import com.mercury.SpringBootRestDemo.bean.Comment;
-import com.mercury.SpringBootRestDemo.dao.CommentDao;
 import com.mercury.SpringBootRestDemo.service.CommentService;
 import com.mercury.SpringBootRestDemo.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +20,20 @@ public class CommentController {
     @GetMapping
     public List<Comment> getAll() {
         // GET - http://localhost:8080/comments
-        commentService.insertTestToComment();
-//        return ()();
         System.out.println("CommentController -> getAll()");
-        return null;
-//        return commentService.getAll();
+        return commentService.getAll();
     }
 
     @GetMapping("/{name}")
     public Comment get(@PathVariable String name) {
         // GET - http://localhost:8080/comments/Dave
+        commentService.insertTestToComment();
+
         return null;
     }
 
     @GetMapping("/age/{age}")
     public List<Comment> getByAge(@PathVariable int age) {
-        // GET - http://localhost:8080/comments/age/40
         // GET - http://localhost:8080/comments/age/40
         // return null;
         return commentService.getAll();
