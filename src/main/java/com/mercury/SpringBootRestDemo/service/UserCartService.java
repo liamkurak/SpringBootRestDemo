@@ -1,8 +1,9 @@
 package com.mercury.SpringBootRestDemo.service;
 
 import com.mercury.SpringBootRestDemo.bean.AddToCart;
-import com.mercury.SpringBootRestDemo.bean.Comment;
+import com.mercury.SpringBootRestDemo.bean.UserCart;
 import com.mercury.SpringBootRestDemo.dao.AddToCartDao;
+import com.mercury.SpringBootRestDemo.dao.UserCartDao;
 import com.mercury.SpringBootRestDemo.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,24 +11,24 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AddToCartService {
+public class UserCartService {
 
     @Autowired
-    private AddToCartDao addToCartDao;
+    private UserCartDao userCartDao;
 
-    public List<AddToCart> getAll(){
-        return addToCartDao.findAll();
+    public List<UserCart> getAll(){
+        return userCartDao.findAll();
     }
 
-    public Response save(AddToCart addToCart){
+    public Response save(UserCart userCart){
         try{
-            addToCartDao.save(addToCart);
+            userCartDao.save(userCart);
 //            addToCartDao.QueryWay();
-            System.out.println("AddToCartService -> addToCartDao.save: returns"+ addToCart);
+            System.out.println("AddToCartService -> addToCartDao.save: returns"+ userCart);
 
-            return new Response(true,"AddToCartService -> save(): success to save" + addToCart);
+            return new Response(true,"AddToCartService -> save(): success to save" + userCart);
         }catch (Exception e) {
-            return new Response(false,"AddToCartService -> save(): failed to save" + addToCart.toString());
+            return new Response(false,"AddToCartService -> save(): failed to save" + userCart.toString());
         }
     }
 

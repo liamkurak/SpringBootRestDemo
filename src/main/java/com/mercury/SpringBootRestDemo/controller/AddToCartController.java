@@ -1,8 +1,6 @@
 package com.mercury.SpringBootRestDemo.controller;
 
 import com.mercury.SpringBootRestDemo.bean.AddToCart;
-import com.mercury.SpringBootRestDemo.bean.Comment;
-import com.mercury.SpringBootRestDemo.dao.AddToCartDao;
 import com.mercury.SpringBootRestDemo.service.AddToCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

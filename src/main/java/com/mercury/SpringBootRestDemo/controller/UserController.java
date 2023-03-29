@@ -2,7 +2,6 @@ package com.mercury.SpringBootRestDemo.controller;
 
 import java.util.List;
 
-import com.mercury.SpringBootRestDemo.bean.Sample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -37,6 +36,13 @@ public class UserController {
 	public Response addUser(@RequestBody User user) {
 		return userService.register(user);
 	}
+
+	/*
+
+		front -> login : tok
+		
+	 */
+//	jwt tok
 
 	//localhost:8080/users/putUser
 	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")

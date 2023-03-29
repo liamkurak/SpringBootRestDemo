@@ -64,7 +64,8 @@ public class SecurityConfig {
 //				.antMatchers(HttpMethod.GET, "/products").permitAll()
 //				.antMatchers(HttpMethod.GET, "/products/*").hasAuthority("ROLE_ADMIN")	//.hasRole("ADMIN")	// hasRole: "ROLE_xyz"
                                 .anyRequest()
-                                .permitAll()	//.authenticated()
+                                .permitAll()
+//                                .authenticated()
         );
 
         http.exceptionHandling()

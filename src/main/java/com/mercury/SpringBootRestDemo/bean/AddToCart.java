@@ -22,9 +22,11 @@ public class AddToCart {
     @Column
     private int product_qty;
 
+    @Column
+    private String order_detail;
 
-    public AddToCart() {
-    }
+    @Column
+    private String order_price;
 
     @Override
     public String toString() {
@@ -33,6 +35,8 @@ public class AddToCart {
                 ", username='" + username + '\'' +
                 ", product_id=" + product_id +
                 ", product_qty=" + product_qty +
+                ", order_detail='" + order_detail + '\'' +
+                ", order_price='" + order_price + '\'' +
                 '}';
     }
 
@@ -68,10 +72,31 @@ public class AddToCart {
         this.product_qty = product_qty;
     }
 
-    public AddToCart(int id, String username, int product_id, int product_qty) {
+    public String getOrder_detail() {
+        return order_detail;
+    }
+
+    public void setOrder_detail(String order_detail) {
+        this.order_detail = order_detail;
+    }
+
+    public String getOrder_price() {
+        return order_price;
+    }
+
+    public void setOrder_price(String order_price) {
+        this.order_price = order_price;
+    }
+
+    public AddToCart(int id, String username, int product_id, int product_qty, String order_detail, String order_price) {
         this.id = id;
         this.username = username;
         this.product_id = product_id;
         this.product_qty = product_qty;
+        this.order_detail = order_detail;
+        this.order_price = order_price;
+    }
+
+    public AddToCart() {
     }
 }
