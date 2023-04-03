@@ -7,36 +7,44 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= "ADDTOCART")
-public class AddToCart {
+@Table(name= "PRODUCTDATA")
+public class ProductData {
 
     @Id
     private int id;
 
     @Column
-    private String username;
+    private int stock;
 
     @Column
-    private int product_id;
+    private float price;
 
     @Column
-    private int product_qty;
+    private String name;
 
     @Column
-    private String order_detail;
+    private String descri;
 
     @Column
-    private String order_price;
+    private String img;
+
+    @Column
+    private String category;
+
+    @Column
+    private String weight;
 
     @Override
     public String toString() {
-        return "AddToCart{" +
+        return "ProductData{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
-                ", product_id=" + product_id +
-                ", product_qty=" + product_qty +
-                ", order_detail='" + order_detail + '\'' +
-                ", order_price='" + order_price + '\'' +
+                ", stock=" + stock +
+                ", price=" + price +
+                ", name='" + name + '\'' +
+                ", descri='" + descri + '\'' +
+                ", img='" + img + '\'' +
+                ", category='" + category + '\'' +
+                ", weight='" + weight + '\'' +
                 '}';
     }
 
@@ -48,55 +56,73 @@ public class AddToCart {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public int getStock() {
+        return stock;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    public int getProduct_id() {
-        return product_id;
+    public float getPrice() {
+        return price;
     }
 
-    public void setProduct_id(int product_id) {
-        this.product_id = product_id;
+    public void setPrice(float price) {
+        this.price = price;
     }
 
-    public int getProduct_qty() {
-        return product_qty;
+    public String getName() {
+        return name;
     }
 
-    public void setProduct_qty(int product_qty) {
-        this.product_qty = product_qty;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getOrder_detail() {
-        return order_detail;
+    public String getDescri() {
+        return descri;
     }
 
-    public void setOrder_detail(String order_detail) {
-        this.order_detail = order_detail;
+    public void setDescri(String descri) {
+        this.descri = descri;
     }
 
-    public String getOrder_price() {
-        return order_price;
+    public String getImg() {
+        return img;
     }
 
-    public void setOrder_price(String order_price) {
-        this.order_price = order_price;
+    public void setImg(String img) {
+        this.img = img;
     }
 
-    public AddToCart(int id, String username, int product_id, int product_qty, String order_detail, String order_price) {
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
+    public ProductData(int id, int stock, float price, String name, String descri, String img, String category, String weight) {
         this.id = id;
-        this.username = username;
-        this.product_id = product_id;
-        this.product_qty = product_qty;
-        this.order_detail = order_detail;
-        this.order_price = order_price;
+        this.stock = stock;
+        this.price = price;
+        this.name = name;
+        this.descri = descri;
+        this.img = img;
+        this.category = category;
+        this.weight = weight;
     }
 
-    public AddToCart() {
+    public ProductData() {
     }
 }

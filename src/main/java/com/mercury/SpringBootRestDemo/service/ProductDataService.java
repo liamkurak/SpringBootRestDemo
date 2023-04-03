@@ -1,8 +1,10 @@
 package com.mercury.SpringBootRestDemo.service;
 
 import com.mercury.SpringBootRestDemo.bean.AddToCart;
-import com.mercury.SpringBootRestDemo.bean.Comment;
+import com.mercury.SpringBootRestDemo.bean.ProductData;
+import com.mercury.SpringBootRestDemo.bean.Sample;
 import com.mercury.SpringBootRestDemo.dao.AddToCartDao;
+import com.mercury.SpringBootRestDemo.dao.ProductDataDao;
 import com.mercury.SpringBootRestDemo.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,27 +12,35 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AddToCartService {
+public class ProductDataService {
 
     @Autowired
-    private AddToCartDao addToCartDao;
+    private ProductDataDao productDataDao;
 
-    public List<AddToCart> getAll(){
-        return addToCartDao.findAll();
+    public List<ProductData> getAll(){
+        return productDataDao.findAll();
     }
 
-    public Response save(AddToCart addToCart){
+    public Response save(ProductData productData){
         try{
-            addToCartDao.save(addToCart);
+            productDataDao.save(productData);
 //            addToCartDao.QueryWay();
-            System.out.println("AddToCartService -> addToCartDao.save: returns"+ addToCart);
+            System.out.println("ProductDataService -> productDataDao.save: returns"+ productData);
 
-            return new Response(true,"AddToCartService -> save(): success to save" + addToCart);
+            return new Response(true,"ProductDataService -> save(): success to save" + productData);
         }catch (Exception e) {
-            return new Response(false,"AddToCartService -> save(): failed to save" + addToCart.toString());
+            return new Response(false,"ProductDataService -> save(): failed to save" + productData.toString());
         }
     }
 
+    public Response del(ProductData productData){
+        try{
+            productDataDao.delete(productData);
+            return new Response(true,"ProductDataService -> success to save" + productData);
+        }catch (Exception e) {
+            return new Response(false,"ProductDataService -> failed to save" + productData.toString());
+        }
+    }
 
 
 }
